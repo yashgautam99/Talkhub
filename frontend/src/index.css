@@ -3,26 +3,14 @@
 @tailwind utilities;
 
 body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.5)),
-    url("/bg.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url("/bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
 }
 
-/* Media query for mobile devices */
-@media (max-width: 768px) {
-  body {
-    background-size: cover;
-    background-attachment: scroll;
-  }
-}
-
-/* Dark mode scrollbar styling */
+/* dark mode looking scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -40,17 +28,33 @@ body {
   background: #242424;
 }
 
-/* For Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #121212 #555;
+/* SHAKE ANIMATION ON HORIZONTAL DIRECTION */
+.shake {
+  animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) 0.2s both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
-/* For IE and Edge */
-body {
-  -ms-overflow-style: none;
-}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
 
-body::-ms-scrollbar {
-  display: none;
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }

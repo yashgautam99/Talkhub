@@ -1,22 +1,58 @@
-import React from "react";
-import { FaSearch } from "react-icons/fa";
+import { useState } from "react";
+import { IoSearchSharp } from "react-icons/io5";
+import useConversation from "../../zustand/useConversation";
+import useGetConversations from "../../hooks/useGetConversations";
+import toast from "react-hot-toast";
 
-function SearchInput() {
+const SearchInput = () => {
+  const [search, setSearch] = useState("");
+  const { setSelectedConversation } = useConversation();
+  const { conversations } = useGetConversations();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!search) return;
+    if (search.length < 3) {
+      return toast.error("Search term must be at least 3 characters long");
+    }
+
+    const conversation = conversations.find((c) =>
+      c.fullName.toLowerCase().includes(search.toLowerCase())
+    );
+
+    if (conversation) {
+      setSelectedConversation(conversation);
+      setSearch("");
+    } else toast.error("No such user found!");
+  };
   return (
-    <form className="flex items-center space-x-2 p-2 bg-white dark:bg-gray-800 shadow-md rounded-full transition-all duration-300 ease-in-out transform hover:scale-105 focus-within:scale-105">
+    <form onSubmit={handleSubmit} className="flex items-center gap-2">
       <input
         type="text"
-        placeholder="Search..."
-        className="input input-bordered w-full max-w-xs rounded-full bg-transparent text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-300"
+        placeholder="Search…"
+        className="input input-bordered rounded-full"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
       />
-      <button
-        type="submit"
-        className="btn btn-circle bg-sky-500 text-white hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-300"
-      >
-        <FaSearch />
+      <button type="submit" className="btn btn-circle bg-sky-500 text-white">
+        <IoSearchSharp className="w-6 h-6 outline-none" />
       </button>
     </form>
   );
-}
-
+};
 export default SearchInput;
+
+// STARTER CODE SNIPPET
+// import { IoSearchSharp } from "react-icons/io5";
+
+// const SearchInput = () => {
+// 	return (
+// 		<form className='flex items-center gap-2'>
+// 			<input type='text' placeholder='Search…' className='input input-bordered rounded-full' />
+// 			<button type='submit' className='btn btn-circle bg-sky-500 text-white'>
+// 				<IoSearchSharp className='w-6 h-6 outline-none' />
+// 			</button>
+// 		</form>
+// 	);
+// };
+// export default SearchInput;

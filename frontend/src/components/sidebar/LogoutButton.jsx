@@ -1,17 +1,20 @@
-import React from "react";
-import { IoMdLogOut } from "react-icons/io";
+import { BiLogOut } from "react-icons/bi";
+import useLogout from "../../hooks/useLogout";
 
-function LogoutButton() {
+const LogoutButton = () => {
+  const { loading, logout } = useLogout();
+
   return (
-    <div className="mt-auto flex items-center justify-center p-4">
-      <button
-        className="btn btn-circle bg-red-500 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 transition-all duration-300 ease-in-out transform hover:scale-110"
-        title="Logout"
-      >
-        <IoMdLogOut className="w-6 h-6" />
-      </button>
+    <div className="mt-auto">
+      {!loading ? (
+        <BiLogOut
+          className="w-6 h-6 text-white cursor-pointer"
+          onClick={logout}
+        />
+      ) : (
+        <span className="loading loading-spinner"></span>
+      )}
     </div>
   );
-}
-
+};
 export default LogoutButton;

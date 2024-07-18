@@ -2,36 +2,30 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
   {
-    // Corrected to Schema
     fullName: {
       type: String,
       required: true,
-      minlength: 3,
-      maxlength: 50,
     },
     username: {
       type: String,
       required: true,
       unique: true,
-      minlength: 5,
-      maxlength: 20,
     },
     password: {
       type: String,
       required: true,
-      minlength: 5,
-      maxlength: 100,
-      select: false,
+      minlength: 6,
     },
     gender: {
       type: String,
       required: true,
-      enum: ["Male", "Female", "Other"],
+      enum: ["male", "female"],
     },
     profilePic: {
       type: String,
       default: "",
     },
+    // createdAt, updatedAt => Member since <createdAt>
   },
   { timestamps: true }
 );
