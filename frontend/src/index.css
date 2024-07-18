@@ -6,14 +6,51 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.3),
-      /* Light white transparent */ rgba(0, 0, 0, 0.5)
-        /* Darker black transparent */
-    ),
+  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.5)),
     url("/bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  body {
+    background-size: cover;
+    background-attachment: scroll;
+  }
+}
+
+/* Dark mode scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #555;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #121212;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #242424;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #121212 #555;
+}
+
+/* For IE and Edge */
+body {
+  -ms-overflow-style: none;
+}
+
+body::-ms-scrollbar {
+  display: none;
 }

@@ -3,7 +3,7 @@ import React from "react";
 function Login() {
   return (
     <div className="flex items-center justify-center min-h-screen 0">
-      <div className="w-full max-w-sm p-6 bg-white bg-opacity- backdrop-filter backdrop-blur-md rounded-lg shadow-lg">
+      <div className="w-full max-w-sm p-6 bg-white backdrop-filter backdrop-blur-md rounded-lg shadow-lg">
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
           Login <span className="text-blue-600">Talkhub</span>
         </h1>
