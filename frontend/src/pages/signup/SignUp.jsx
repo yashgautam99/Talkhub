@@ -25,9 +25,9 @@ const SignUp = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
-      <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
+      <div className="w-full p-6 rounded-lg shadow-md bg-gray-900 bg-clip-padding ">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
-          Sign Up <span className="text-blue-500"> ChatApp</span>
+          Sign Up <span className="text-blue-500">Talkhub</span>
         </h1>
 
         <form onSubmit={handleSubmit}>
@@ -99,14 +99,13 @@ const SignUp = () => {
           <Link
             to={"/login"}
             className="text-sm hover:underline hover:text-blue-600 mt-2 inline-block"
-            href="#"
           >
             Already have an account?
           </Link>
 
           <div>
             <button
-              className="btn btn-block btn-sm mt-2 border border-slate-700"
+              className="btn btn-block btn-sm mt-2 border border-slate-700  bg-blue-700 hover:bg-blue-900"
               disabled={loading}
             >
               {loading ? (
@@ -121,4 +120,5 @@ const SignUp = () => {
     </div>
   );
 };
+
 export default SignUp;
